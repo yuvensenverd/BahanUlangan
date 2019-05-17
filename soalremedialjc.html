@@ -1,0 +1,80 @@
+<script>
+var array = []
+var arraygenap = []
+var arrayganjil = []
+var confirmation= true
+do{
+    var numbers = "1234567890".split("")
+    var userinput = prompt("Masukkan angka")
+    var check = userinput.split("")
+    if(check.length == 0){confirmation = false}else {
+
+    
+   
+
+    
+    for(var i = 0; i<check.length; i++){
+        if(numbers.indexOf(check[i]) == -1 || check[i] == null){
+            confirmation = false
+        }
+    }
+    if(confirmation == true){
+        array.push(parseInt(userinput))
+    }
+}
+    
+
+
+
+}while(confirmation)
+
+
+// BAGIAN A ===================================
+for(var i = 0; i<array.length; i++){
+    if(array[i] % 2 == 0){
+        arraygenap.push(array[i])
+    }else{arrayganjil.push(array[i])}
+}
+
+alert("angka genap \n " + arraygenap)
+
+alert("angka ganjil \n " + arrayganjil)
+
+// BAGIAN B ====================================
+var genaptotal = 0
+for (var i = 0; i<arraygenap.length; i++){
+    genaptotal += arraygenap[i]
+}
+var avg = genaptotal / arraygenap.length
+alert("nilai rata2 bil genap adalah " + avg)
+
+var ganjiltotal = 0
+for (var i = 0; i<arrayganjil.length; i++){
+    ganjiltotal += arrayganjil[i]
+}
+alert("nilai jumlah bialngan ganjil adalah " + ganjiltotal)
+
+// BAGIAN C ==================================
+var highest = 0
+var lowest = 9999999999999999999999999999999999
+[2,3,5,6,7,8]
+
+for(var i = 0 ; i < array.length; i++){
+    
+    for(var y = 0 ; y < array.length; y++){
+        
+        if(array[i] > array[y] && array[i] >= highest){ 
+            highest = array[i]
+        }
+        else if (array[i] < array[y] && array[i] <= lowest ){
+            lowest = array[i]
+        }
+    }
+}
+
+
+alert("nilai tertinggi adalah " + highest + " dan nilai terendah adalah " + lowest)
+
+
+// bisa juga pakai , <script src="asdiajsid.js"> script tutup
+</script>

@@ -1,0 +1,93 @@
+<script>
+
+    function Min(arr){
+    var index = 99999999999999999999999999999
+   
+     for(var i = 0; i<arr.length; i++){
+         for(var y = i+1; y<arr.length; y++){
+             if(arr[i] < arr[y] && index > arr[i]){
+                 index = arr[i]
+
+             }else if(arr[y] < arr[i] && index > arr[y])
+             {
+                  index =arr[y]
+            }
+             else{index = index}
+         }
+
+     }
+     var indextoremove = arr.indexOf(index)
+     return indextoremove
+    // var sorted = arr.sort()
+    // var hasil = sorted[sorted.length-1]
+    // return hasil
+}
+
+
+var array = []
+var confirmation= true
+do{
+    var numbers = "1234567890".split("")
+    var userinput = prompt("Masukkan angka")
+    var check = userinput.split("")
+    if(check.length == 0){confirmation = false}else {
+
+    for(var i = 0; i<check.length; i++){
+        if(numbers.indexOf(check[i]) == -1 || check[i] == null){
+            confirmation = false
+        }
+    }
+    if(confirmation == true){
+        array.push(parseInt(userinput))
+    }
+}}while(confirmation)
+
+// function bubbleSort(arr){
+   
+//    for (var i = array.length; i>0; i--){
+
+//      for(var j = 0; j<i; j++){
+
+//        if(arr[j]>arr[j+1]){
+           
+//            var temp = arr[j];
+//            arr[j] = arr[j+1];
+//            arr[j+1] = temp;
+//         }
+//      }
+//    }
+//    return arr;
+// }
+
+// var x = bubbleSort(array)
+// alert(x)
+
+var len = array.length
+
+var newarray = []
+
+
+while(len > 0){
+
+    if(array.length > 1)
+    {
+        var indexremove = Min(array)
+        newarray.push(array[indexremove])
+        array.splice(indexremove, 1)
+        len=len-1
+    } 
+    else
+    {
+        newarray.push(array[0])
+        len=len-1
+    }
+    
+}
+alert(newarray)
+    
+
+
+
+
+    
+</script>
