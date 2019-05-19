@@ -1,7 +1,7 @@
-var arraytosort = [2,3,6,7,3,4,4,6,7,3,2,3,1,6,7,2,9,0,0]
+var arraytosort = [2,3,6,7,3,4,4,6,7,3,2,3,1,6,7,2,9,0,0,90]
 
 function sort1(arraytosort){
-    for(var i = arraytosort.length; i>0;i --){
+    for(var i = arraytosort.length; i>0; i--){ // ubah sort 
         for(var y=0; y<i;y++){
             if(arraytosort[y] > arraytosort[y+1]){
                 var ex = arraytosort[y]

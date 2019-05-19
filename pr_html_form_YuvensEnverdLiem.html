@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML Form Yuvens Enverd Liem</title>
+    <h1><center>Daftar Manusia</center></h1>
+    <style>
+            table,tr,td{
+                border : 1px solid black;
+                padding : 10px;
+                border-collapse: collapse
+                
+            }
+            form {
+            margin: 0 auto;
+            width: 400px;
+            padding: 1em;
+            border: 2px solid #CCC;
+            }
+           
+            
+
+        
+        </style>
+</head>
+
+<body>
+    <form>
+        <center>
+    <input style="height: 33px;font-size:13pt;" type="text" id="usernama" placeholder="Input nama" >
+    <br><br>
+    <input style="height: 33px;font-size:13pt;" type="number" id="userumur" placeholder="Input umur">
+    <br><br>
+    Gender  <input type="radio" name="gender" id="radiopria" value="Pria"/>Pria
+    <input type="radio" name="gender" id="radiowanita" value="Wanita"/>Wanita <br><br>
+    <input style="height: 33px;font-size:13pt;" type="text" id="userjob" placeholder="Pekerjaan Anda"><br><br>
+    <input type="button" id="usersubmit" value="Submit" onClick="addManusia()"><br><br>
+    <p>Filter by Type</p><br>
+    <input type="button" id="buttonnama" value="Nama" onclick="filterNama()">
+    <input type="button" id="buttonumur" value="Umur" onclick="filterumur()">
+    <input type="button" id="buttonkelamin" value="Kelamin" onclick="filterGender()">
+    <input type="button" id="buttonpekerjaan" value="Pekerjaan" onclick="filterJob()">
+    
+</center>
+</form>
+    <center><h1>List Manusia</h1></center>
+    <center>
+    <table>
+        <thead>
+            <tr>
+                <td>No</td>
+                <td>Nama</td>
+                <td>Umur</td>
+                <td>Kelamin</td>
+                <td>Pekerjaan</td>
+            </tr>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</center>
+    
+    
+<script>
+    class Manusia {
+        constructor(nama,umur,kelamin,pekerjaan){
+            this.nama = nama
+            this.umur = umur
+            this.kelamin = kelamin
+            this.pekerjaan = pekerjaan
+        }
+
+    }
+    var arrayManusia = [
+        
+    ]
+
+    function addManusia(){
+        var usernama = document.getElementById("usernama").value 
+        var userumur = document.getElementById("userumur").value 
+        userumur = parseInt(userumur)
+        // if (document.getElementById("radiowanita").checked) 
+        // { var usergender = "Wanita"} // document.getElementById("radiowanita").value}
+        // else if( document.getElementById("radiowanita").checked)
+        //  { var usergender = "Pria"} // document.getElementById("radiopria").value
+        // var usergender =  document.querySelector('input[name="gender"]:checked').value;
+        
+        var radios = document.getElementsByName('gender')
+        
+        for(var i = 0; i<radios.length; i++){
+            if(radios[i].checked){
+                var usergender = radios[i].value
+                
+                break;
+            }
+        }
+        var userjob = document.getElementById("userjob").value
+        var newlist = new Manusia(usernama, userumur, usergender, userjob)
+        arrayManusia.push(newlist)
+        printManusia(arrayManusia)
+
+    }
+
+
+    function printManusia(arr){
+        output = ""
+        for(var i = 0; i < arr.length ; i++){
+            output = output + `<tr>
+                <td>${i+1}</td>
+                <td>${arr[i].nama}</td>
+                <td>${arr[i].umur} Tahun</td>
+                <td>${arr[i].kelamin}</td>
+                <td>${arr[i].pekerjaan}</td>
+
+                </tr>
+            `
+            document.getElementsByTagName("tbody")[0].innerHTML = output
+        }
+    }
+    
+    function filterumur(){
+
+        for(var i = 0; i<arrayManusia.length-1;i++){
+            for(var y = i+1; y<arrayManusia.length; y++){
+                if(arrayManusia[i].umur> arrayManusia[y].umur){
+                    var temp = arrayManusia[i]
+                    arrayManusia[i] = arrayManusia[y]
+                    arrayManusia[y] = temp
+                }
+            }
+            
+        }
+        printManusia(arrayManusia)
+
+    }
+
+
+
+    function filterNama(){
+    
+    for(var i = 0; i<arrayManusia.length-1;i++){
+        for(var y = i+1; y<arrayManusia.length; y++){
+            if(arrayManusia[i].nama> arrayManusia[y].nama){
+                var temp = arrayManusia[i]
+                arrayManusia[i] = arrayManusia[y]
+                arrayManusia[y] = temp
+            }
+        }
+        
+    }
+    printManusia(arrayManusia)
+
+    }
+
+    function filterJob(){
+    
+    for(var i = 0; i<arrayManusia.length-1;i++){
+        for(var y = i+1; y<arrayManusia.length; y++){
+            if(arrayManusia[i].pekerjaan> arrayManusia[y].pekerjaan){
+                var temp = arrayManusia[i]
+                arrayManusia[i] = arrayManusia[y]
+                arrayManusia[y] = temp
+            }
+        }
+        
+    }
+    printManusia(arrayManusia)
+
+    }
+
+    function filterGender(){
+    
+    for(var i = 0; i<arrayManusia.length-1;i++){
+        for(var y = i+1; y<arrayManusia.length; y++){
+            if(arrayManusia[i].kelamin> arrayManusia[y].kelamin){
+                var temp = arrayManusia[i]
+                arrayManusia[i] = arrayManusia[y]
+                arrayManusia[y] = temp
+            }
+        }
+        
+    }
+    printManusia(arrayManusia)
+
+    }
+
+
+
+
+
+    printManusia(arrayManusia)
+
+
+
+
+
+
+</script>
+</body>
+</html>

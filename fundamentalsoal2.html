@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table,tr,td{
+            border : 1px solid black;
+            padding : 10px;
+            border-collapse: collapse
+        }
+    
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Pilih Menu</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>No</td>
+                    <td>Nama</td>
+                    <td>Harga</td>
+                    <td>Image</td>
+                    <td>Act</td>
+                </tr>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <h1> Keranjang Belanja Anda </h1>
+        <h2></h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>No</td>
+                    <td>Nama</td>
+                    <td>Harga</td>
+                    <td>Image</td>
+                    <td>Act</td>
+                </tr>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <h1></h1>
+
+
+
+    </center>
+    <script>
+        
+    class Product{
+        constructor(nama, harga, image){
+            this.nama = nama
+            this.harga = harga
+            this.image = image
+        }
+    }
+    
+    var arrayProduct = [
+        new Product("Nescafe", 19000, "https://www.ocado.com/productImages/120/12005011_0_640x640.jpg?identifier=d960a263ab67351f3e9e7ffd62ac4b39"),
+        new Product("Dancow", 40000, "https://www.tororo.com/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/d/a/dancow_3_coklat.jpg"),
+        new Product("Milo", 34000, "https://static.winc.com.au/pi/63/62493b46699378d78210db092d7d2b999750a0-103510/full.jpg" )
+]
+    var cartuser =  [
+    ]
+    
+    function printProduct(arr){
+        var output = ""
+        for(var i = 0; i < arr.length; i++){
+            output = output + `<tr>
+                    <td>${i+1}</td>
+                    <td>${arr[i].nama}</td>
+                    <td>${arr[i].harga}</td>
+                    <td><img src=${arr[i].image} width = '100px'></td>
+                    <td><input type="button" id="product${i}"  value="Add to Cart" onClick="addtoCart(${i})"</td>
+                </tr>`
+        }
+        
+        document.getElementsByTagName("tbody")[0].innerHTML= output
+
+    }
+
+    function printCart(arr){
+        if(cartuser.length == 0){
+            document.getElementsByTagName("h2")[0].innerHTML = "Keranjang Anda masih kosong! Silahkan berbelanja! "
+            document.getElementsByTagName("tbody")[1].innerHTML = ""
+            document.getElementsByTagName("h1")[2].innerHTML = ""
+            
+        }else{
+
+        document.getElementsByTagName("h2")[0].innerHTML = ""
+        var output = ""
+        for(var i = 0; i < arr.length; i++){
+            output = output + `<tr>
+                    <td>${i+1}</td>
+                    <td>${arr[i].nama}</td>
+                    <td>${arr[i].harga}</td>
+                    <td><img src=${arr[i].image} width = '100px'></td>
+                    <td><input type="button" id="usercart${i}"  value="Delete" onClick="deleteuserCart(${i})"</td>
+                </tr>`
+        }
+        
+        document.getElementsByTagName("tbody")[1].innerHTML= output
+        var totalbelanja = 0
+        for(var i = 0; i<arr.length; i++){
+            totalbelanja = totalbelanja + arr[i].harga
+        }
+        document.getElementsByTagName("h1")[2].innerHTML = `total belanjaan anda adalah sebanyak Rp. ${totalbelanja}`
+        }
+
+    }
+
+    function addtoCart(index){
+        var confirmation = false
+        confirmation = confirm(`Are you sure to add ${arrayProduct[index].nama} to your cart?`)
+        if(confirmation == true){
+            var x = new Product (arrayProduct[index].nama, arrayProduct[index].harga, arrayProduct[index].image)
+            cartuser.push(x)
+            printCart(cartuser)
+            printProduct(arrayProduct)
+        }
+    }
+
+    function deleteuserCart(index){
+       
+        var confirmationdel = false
+        confirmationdel= confirm(`Are you sure to delete ${cartuser[index].nama} from your cart?`)
+        if(confirmationdel == true){
+            cartuser.splice(index,1)
+            printCart(cartuser)
+            printProduct(arrayProduct)
+        }
+    }
+
+    
+    printProduct(arrayProduct)
+    printCart(cartuser)
+   
+    
+    
+    
+    
+    
+    
+    
+    </script>
+    
+    
+</body>
+</html>

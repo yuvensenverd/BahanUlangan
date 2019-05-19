@@ -57,11 +57,11 @@ alert("nilai jumlah bialngan ganjil adalah " + ganjiltotal)
 // BAGIAN C ==================================
 var highest = 0
 var lowest = 9999999999999999999999999999999999
-[2,3,5,6,7,8]
+
 
 for(var i = 0 ; i < array.length; i++){
     
-    for(var y = 0 ; y < array.length; y++){
+    for(var y = i+1 ; y < array.length; y++){
         
         if(array[i] > array[y] && array[i] >= highest){ 
             highest = array[i]
@@ -74,6 +74,12 @@ for(var i = 0 ; i < array.length; i++){
 
 
 alert("nilai tertinggi adalah " + highest + " dan nilai terendah adalah " + lowest)
+
+// document.getElementsByTagName("p")[0].innerHTML = "angka genap  " + arraygenap +
+// "<br> angka ganjil " + arrayganjil + "<br> nilai rata2 bil genap adalah " + avg + 
+// "<br> nilai jumlah bialngan ganjil adalah " + ganjiltotal + "<br nilai tertinggi adalah " + highest + " dan nilai terendah adalah " + lowest
+                                                    
+ var arrall = [...arrayganjil,arraygenap]
 
 
 // bisa juga pakai , <script src="asdiajsid.js"> script tutup

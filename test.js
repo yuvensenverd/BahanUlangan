@@ -1,3 +1,3 @@
-var a = 0
-var b = 1
-console.log(a>b)
+var a = "AnscnsuaS"
+
+console.log(a.toLowerCase())
